@@ -21,24 +21,28 @@
 			　　</div>
 			<% end %>
 
+            <div class="row">
 			 <%= form_for(@book) do |f| %>
 
 
 			
 
             <h4>Title</h4>
-            <%=f.text_field :title, class: "book_title" %>
+            <%=f.text_field :title, class: "book_title col-lg-12" %>
 
             <h4>Opinion</h4>
-            <%=f.text_area :opinion, class: "book_body" %>
-            
-            <div class="container-fluid" style="height: 30px; text-align: center; font-size: 20px;">
-            <%= f.submit 'Update Book' %>
-            </div>
+            <%=f.text_area :opinion, class: "book_body col-lg-12" %>
+            <br>
+            <br>
+            <br>
+
+            <%= f.submit 'Update Book', class: "btn btn-primary btn-block" %>
+
             <% end %>
 
             <%= link_to "Show", book_path(@book.id), class: "book_#{@book.id}" %>
             <%= link_to "Back", books_path, class: "back" %>
+        </div>
 
 		</div>
 
