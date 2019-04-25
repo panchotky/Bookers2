@@ -23,12 +23,12 @@ class BooksController < ApplicationController
       if @book.save
         redirect_to book_path(@book.id), notice: 'Book was successfully created'
       else
-      @books = Book.all
-      # user写真一覧表示
-      @user = User.all
-      # my情報表示(おそらく違う)
-      @info = current_user
-      render :index
+        @books = Book.all
+        # user写真一覧表示
+        @user = User.all
+        # my情報表示(おそらく違う)
+        @info = current_user
+        render :index
       end
   end
 

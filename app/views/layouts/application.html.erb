@@ -19,7 +19,7 @@
             <ul class="navbar-nav navbar-right">
                 <li class="nav-item">
             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-            <%= link_to "Home", user_path(current_user.id), class: "user_#{current_user.id}" %></li>
+            <%= link_to "Home", user_path(current_user.id), class: "home" %></li>
                 <li class="nav-item">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             <%= link_to "Users", users_path, class: "users" %></li>
@@ -54,6 +54,14 @@
             </div>
         </nav>
     <% end %>
+
+    <div class="fix">
+    <% if flash[:notice] %>
+     <div id="notice">
+        <%= flash[:notice] %>
+     </div>
+     <% end %>
+    </div>
 
 
     <%= yield %>
