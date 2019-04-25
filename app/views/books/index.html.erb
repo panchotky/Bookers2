@@ -4,6 +4,19 @@
 
 <!-- 自分のプロフィール情報 -->
 		<div class="col-lg-3">
+
+<!-- バリデーションのエラー表示(book新規投稿) -->
+			<% if @book.errors.any? %>
+			　　<div id="error_explanation">
+			　　<h2><%= @book.errors.count %>件のerrorが発生しました。</h2>
+			　　<ul>
+			　　<% @book.errors.full_messages.each do |message| %>
+			　　　　<li><%= message %></li>
+			　　<% end %>
+			　　</ul>
+			　　</div>
+			<% end %>
+
         	<h3>User info</h3>
 
 
@@ -30,32 +43,25 @@
 			<!-- 編集ボタン -->
 			<%= link_to "　", edit_user_path(@info.id), class: "btn btn-default btn-block glyphicon glyphicon-wrench edit_user_#{@info.id}" %>
 
+            <div class="row">
             <h3>New book</h3>
 			<!-- 新規投稿フォーム -->
 			<%= form_for(@book) do |f| %>
-
-			<!-- バリデーションのエラー表示 -->
-			<% if @book.errors.any? %>
-			　　<div id="error_explanation">
-			　　<h2><%= @book.errors.count %>件のエラーが発生しました。</h2>
-			　　<ul>
-			　　<% @book.errors.full_messages.each do |message| %>
-			　　　　<li><%= message %></li>
-			　　<% end %>
-			　　</ul>
-			　　</div>
-			<% end %>
 			
 			<!-- タイトル -->
 			<h6>Title</h6>
-			<%= f.text_field :title, class: "book_title" %>
+			<%= f.text_field :title, class: "book_title col-lg-12" %>
 			<!-- オピニオン -->
 			<h6>Opinion</h6>
-			<%= f.text_area :opinion, class: "book_body" %>
+			<%= f.text_area :opinion, class: "book_body col-lg-12" %>
 			<div class="submit-bottom">
 			<!-- 新規投稿ボタン -->
+			<br>
+			<br>
+			<br>
 			<%= f.submit 'Create Book', class: "btn btn-primary btn-block" %></div>
 			<% end %>
+		    </div>
 		</div>
 
 

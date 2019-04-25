@@ -5,6 +5,7 @@
 		
 
         <div class="col-lg-3">
+        	
         	<h3>User info</h3>
 			<!-- 選択した人のプロフィール情報 -->
 			<!-- 画像 -->
@@ -41,24 +42,28 @@
             <%= link_to "　", books_path, class: "books btn btn-default btn-block glyphicon glyphicon-wrench" %>
 			
         <% end %>
-
+	　　　<div class="row">
 　　　　　　 <h3>New book</h3>
 			<!-- 新規投稿フォーム -->
 			<div class="form">
 			<%= form_for(@book) do |f| %>
 			<!-- タイトル -->
 			<h6>Title</h6>
-			<%= f.text_field :title, class: "book_title" %>
+			<%= f.text_field :title, class: "book_title  col-lg-12" %>
 			<!-- オピニオン -->
 			<h6>Opinion</h6>
-			<%= f.text_area :opinion, class: "book_body" %>
+			<%= f.text_area :opinion, class: "book_body col-lg-12" %>
 		    </div>
 
 			<div class="submit-bottom">
 			<!-- 新規投稿ボタン -->
+			<br>
+			<br>
+			<br>
 			<%= f.submit 'Create Book', class: "btn btn-primary btn-block" %></div>
 			<% end %>
 		</div>
+	</div>
 
 		<div class="col-lg-9">
 			<h3>Books</h3>
