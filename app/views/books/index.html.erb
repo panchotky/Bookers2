@@ -1,0 +1,98 @@
+<h3 class="page-title">Book一覧</h3>
+<div class="container">
+	<div class="row">
+
+<!-- 自分のプロフィール情報 -->
+		<div class="col-lg-3">
+        	<h3>User info</h3>
+
+
+		<!-- 画像 -->
+		<%= attachment_image_tag @info, :image, :fill, 60, 60, format: 'jpeg', class: "", fallback: "no_image.jpg" %>
+		<table class="table">
+
+		    	<tbody>
+	    		<tr></tr>
+	    		<tr>
+    			<!-- 名前 -->
+    			<th>name</th>
+    			<th><%= @info.name %></th>
+	    		</tr>
+
+	    		<tr>
+
+	             <!-- 自己紹介 -->
+	             <th>introduction</th>
+	             <th><%= @info.introduction %></th>
+		         </tr>
+			     </tbody>
+				 </table>
+			<!-- 編集ボタン -->
+			<%= link_to "　", edit_user_path(@info.id), class: "btn btn-default btn-block glyphicon glyphicon-wrench edit_user_#{@info.id}" %>
+
+            <h3>New book</h3>
+			<!-- 新規投稿フォーム -->
+			<%= form_for(@book) do |f| %>
+
+			<!-- バリデーションのエラー表示 -->
+			<% if @book.errors.any? %>
+			　　<div id="error_explanation">
+			　　<h2><%= @book.errors.count %>件のエラーが発生しました。</h2>
+			　　<ul>
+			　　<% @book.errors.full_messages.each do |message| %>
+			　　　　<li><%= message %></li>
+			　　<% end %>
+			　　</ul>
+			　　</div>
+			<% end %>
+			
+			<!-- タイトル -->
+			<h6>Title</h6>
+			<%= f.text_field :title, class: "book_title" %>
+			<!-- オピニオン -->
+			<h6>Opinion</h6>
+			<%= f.text_area :opinion, class: "book_body" %>
+			<div class="submit-bottom">
+			<!-- 新規投稿ボタン -->
+			<%= f.submit 'Create Book', class: "btn btn-primary btn-block" %></div>
+			<% end %>
+		</div>
+
+
+		<div class="col-lg-9">
+		 <h3>Books</h3>
+	     <table class="table table-striped">
+         <thead>
+            <tr>
+              <th>User</th>
+              <th>Title</th>
+              <th>Opinion</th>
+              <th></th>
+            </tr>
+         </thead>
+
+         <tbody>
+            <% @books.each do |book| %>
+            <tr>
+            <!-- userモデルからユーザー画像を引っ張りたい -->
+				<td>
+					<%= attachment_image_tag book.user, :image, :fill, 60, 60, format: 'jpeg', class: "", fallback: "no_image.jpg" %>
+				</td>
+				<!-- タイトルに本の詳細画面へのリンクを指定  -->
+				<td>
+					<%= link_to book_path(book.id), class: "book_#{book.id}" do %>
+						<%= book.title %>
+					<% end %>
+				</td>
+				<td>
+					<%= book.opinion %>
+				</td>
+           </tr>
+          <% end %>
+          </tbody>
+      </table>
+		</div>
+</div>
+</div>
+
+

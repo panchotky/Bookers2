@@ -1,0 +1,83 @@
+<h3 class="page-title">User一覧</h3>
+<div class="container">
+	<div class="row">
+
+<!-- 自分のプロフィール情報 -->
+		<div class="col-lg-3">
+        	<h3>User info</h3>
+
+
+		<!-- 画像 -->
+		<%= attachment_image_tag @info, :image, :fill, 60, 60, format: 'jpeg', class: "", fallback: "no_image.jpg" %>
+		<table class="table">
+
+		    	<tbody>
+	    		<tr></tr>
+	    		<tr>
+    			<!-- 名前 -->
+    			<th>name</th>
+    			<th><%= @info.name %></th>
+	    		</tr>
+
+	    		<tr>
+
+	             <!-- 自己紹介 -->
+	             <th>introduction</th>
+	             <th><%= @info.introduction %></th>
+		         </tr>
+			     </tbody>
+				 </table>
+			<!-- 編集ボタン -->
+			<%= link_to "　", edit_user_path(@info.id), class: "btn btn-default btn-block glyphicon glyphicon-wrench edit_user_#{@info.id}"  %>
+
+
+            <h3>New book</h3>
+			<!-- 新規投稿フォーム -->
+			<%= form_for(@book) do |f| %>
+			<!-- タイトル -->
+			<h6>Title</h6>
+			<%= f.text_field :title, class: "book_title" %>
+			<!-- オピニオン -->
+			<h6>Opinion</h6>
+			<%= f.text_area :opinion, class: "book_body" %>
+			<div class="submit-bottom">
+			<!-- 新規投稿ボタン -->
+			<%= f.submit 'Create Book', class: "btn btn-primary btn-block" %></div>
+			<% end %>
+		</div>
+
+
+    <div class="col-lg-9">
+    	<h3>Users</h3>
+<!-- table表示 -->
+      <table class="table table-striped">
+         <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Detail</th>
+              <th></th>
+            </tr>
+         </thead>
+<!-- each文でユーザ情報を一覧表示 -->
+         <tbody>
+            <tr>
+            <% @users.each do |user| %>
+<!-- 画像をもってくる記述 -->
+              <td>
+              <%= attachment_image_tag user, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
+              </td>
+              <td>
+              <%= user.name %>
+              </td>
+              <td>
+     		  <!-- ユーザー詳細画面へリンクを作成 -->
+              <%= link_to "show", user_path(user.id), class: "user_#{user.id}" %>
+              </td>
+            </tr>
+            <% end %>
+         </tbody>
+       </table>
+     </div>
+</div>
+</div>

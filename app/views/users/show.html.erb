@@ -1,0 +1,107 @@
+<h3 class="page-title">ユーザー詳細画面</h3>
+<div class="container">
+	<div class="row">
+
+		
+
+        <div class="col-lg-3">
+        	<h3>User info</h3>
+			<!-- 選択した人のプロフィール情報 -->
+			<!-- 画像 -->
+			<%= attachment_image_tag @user, :image, :fill, 60, 60, fallback: "no_image.jpg" %>
+
+
+			    <table class="table">
+			    	<tbody>
+			    		<tr></tr>
+			    		<tr>
+			    			<!-- 名前 -->
+			    			<th>name</th>
+			    			<th><%= @user.name %></th>
+			    		</tr>
+
+			    		<tr>
+
+				             <!-- 自己紹介 -->
+				             <th>introduction</th>
+				             <th><%= @user.introduction %></th>
+				        </tr>
+				     </tbody>
+				 </table>
+
+			<!-- 編集ボタン ＊自分だったら編集・自分じゃなかったら一覧へリンク-->
+			
+
+			<!-- 選択されたユーザーIDが現在操作しているIDと同じ場合 -->
+		<% if @user.id == current_user.id %>
+			<%= link_to "　", edit_user_path(@user), class: "btn btn-default btn-block glyphicon glyphicon-wrench edit_user_#{@user}" %>
+            
+　　　　　　　<!-- 自分以外の場合 -->
+		 <% else %>
+            <%= link_to "　", books_path, class: "books btn btn-default btn-block glyphicon glyphicon-wrench" %>
+			
+        <% end %>
+
+　　　　　　 <h3>New book</h3>
+			<!-- 新規投稿フォーム -->
+			<div class="form">
+			<%= form_for(@book) do |f| %>
+			<!-- タイトル -->
+			<h6>Title</h6>
+			<%= f.text_field :title, class: "book_title" %>
+			<!-- オピニオン -->
+			<h6>Opinion</h6>
+			<%= f.text_area :opinion, class: "book_body" %>
+		    </div>
+
+			<div class="submit-bottom">
+			<!-- 新規投稿ボタン -->
+			<%= f.submit 'Create Book', class: "btn btn-primary btn-block" %></div>
+			<% end %>
+		</div>
+
+		<div class="col-lg-9">
+			<h3>Books</h3>
+
+			<table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Opinion</th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+
+			<!-- 選択した人が投稿したものを一覧で表示  -->
+			<% @books.each do |book| %>
+
+			   
+			      <td>
+			      	 <%= link_to book_path(book.id), class: "book_#{book.id}" do %>
+			         <%= book.title %>
+			         <% end %>
+			      </td>
+			      <td>
+			      <%= book.opinion %>
+			      </td>
+			      </tr>
+			    
+			<% end %>
+
+                </tbody>
+              </table>
+		</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+

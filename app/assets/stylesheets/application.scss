@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.title{
+	color: white;
+	font-size: 20px;
+	padding-top: 10px;
+	padding-left: 10px;
+	width: 100px;
+}
+
+.nav-item{
+    font-size: 16px;
+    margin: 10px;
+}
+
+.submit-bottom{
+	display: block;
+}
+
+.page-title{
+	margin-left:100px;
+}
+
+.link{
+	border-right: 1px solid;
+}
+
+.about{
+	margin-left: 50px;
+}
+
+.actions{
+	margin-top: 20px;
+}
+
+.form{
+	length: 100%;
+}
